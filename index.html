@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Marianna Chaban</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Prata&family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
+
+		<style>
+			body {
+				font-family: "Roboto", sans-serif;
+				color: #26211d;
+			}
+			.headerBackground {
+				width: 100%;
+				margin-top: 40px;
+				position: relative;
+				background-image: url(headerBackground.jpg);
+				min-height: 400px;
+				object-fit: contain;
+				background-size: contain;
+			}
+			.profileImage {
+				position: absolute;
+				border-radius: 700px;
+				height: 256px !important;
+				background-color: white;
+				bottom: -120px;
+				right: 48px;
+				width: 256px;
+			}
+			.mainContainer {
+				padding: 128px 40px;
+			}
+			.infoBlocksContainer {
+				display: flex;
+				justify-items: center;
+			}
+			.infoBlock {
+				flex: 1;
+			}
+			.headerText {
+				width: 300px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+			.title {
+				font-size: 24px;
+				font-weight: 600;
+				font-family: "Prata", serif;
+				margin-bottom: 8px;
+			}
+			.grid-container {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				grid-gap: 16px;
+			}
+			.grid-item {
+				box-shadow: 1px 2px 10px 0px #ccc;
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+				cursor: pointer;
+			}
+			.grid-item:hover {
+				-webkit-filter: brightness(80%);
+				filter: brightness(80%);
+			}
+			#modal {
+				display: none;
+				pointer-events: all;
+				position: fixed;
+				z-index: 1;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				background-color: rgba(0, 0, 0, 0.9);
+				justify-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+			#modal-img {
+				pointer-events: all;
+				max-height: 100vh;
+				object-fit: contain;
+				cursor: auto;
+			}
+			#close {
+				color: #fff;
+				position: absolute;
+				top: 15px;
+				right: 35px;
+				font-size: 40px;
+				font-weight: bold;
+			}
+			.modal-open {
+				overflow: hidden;
+			}
+			.content {
+				max-width: 2000px;
+			}
+			.wrapper {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+			}
+			@media screen and (max-width: 1280px) {
+				.grid-container {
+					grid-template-columns: repeat(3, 1fr);
+					grid-gap: 10px;
+				}
+			}
+			@media screen and (max-width: 960px) {
+				.infoBlocksContainer {
+					flex-direction: column;
+				}
+				.grid-container {
+					grid-template-columns: repeat(2, 1fr);
+					grid-gap: 10px;
+				}
+			}
+			@media screen and (max-width: 600px) {
+				.profileImage {
+					right: 50% !important;
+					transform: translate(50%);
+				}
+				.grid-container {
+					grid-template-columns: repeat(1, 1fr);
+				}
+				.mainContainer {
+					padding: 128px 12px;
+				}
+			}
+			@media screen and (max-width: 405px) {
+				.headerBackground {
+					background-size: cover;
+				}
+			}
+		</style>
+		<script>
+			window.onload = function () {
+				const images = document.getElementsByClassName("grid-item");
+				const modalContent = document.getElementById("modal-img");
+				const modal = document.getElementById("modal");
+
+				const closeModal = () => {
+					modal.style.display = "none";
+					document.body.classList.remove("modal-open");
+				};
+
+				const handleClickImage = src => () => {
+					modal.style.display = "flex";
+					modalContent.src = src;
+					document.body.classList.add("modal-open");
+				};
+
+				for (let i = 0; i < images.length; i++) {
+					images[i].onclick = handleClickImage(images[i].src);
+				}
+
+				let closeIcon = document.getElementById("close");
+
+				closeIcon.onclick = closeModal;
+				modal.onclick = closeModal;
+				modalContent.onclick = event => {
+					event.preventDefault();
+					event.stopPropagation();
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<div id="modal">
+			<span id="close">&times;</span>
+			<img id="modal-img" />
+		</div>
+		<div class="wrapper">
+			<div class="content">
+				<div class="headerBackground">
+					<img class="headerText" src="headerLogo.png" alt="text" />
+					<img class="profileImage" src="profilePhoto.jpg" alt="me" />
+				</div>
+				<div class="mainContainer">
+					<div class="infoBlocksContainer">
+						<div class="infoBlock mx-4 mb-4">
+							<p class="title">about me</p>
+							<p style="font-size: 16px; font-weight: 400">
+								Hi, my name is Marianna and I’m a self-taught artist and illustrator from Lviv, Ukraine. My
+								passion is to create illustrations that fascinate both children and adults. Getting inspired by
+								other artists, fantasy books and everyday life. I really love watching my imagination flow when i
+								read stories where reality meets magic and mystery, and feel an uncontrollable desire to recreate
+								everything on paper and create an atmospheric illustration. <br />I would love to work on projects
+								that will inspire others to be creative and happy. I can work in different styles and adapt to any
+								requiements. I am ready to work, gain more experience and acquire new skills . I’m always open to
+								challenges and new ideas and ready to learn new things to become even better as an illustrator.<br />I
+								mostly work with Procreate, but i also have knowledge and skills to use Adobe Illustrator and
+								Adobe Photoshop.
+							</p>
+						</div>
+						<div class="infoBlock mx-4">
+							<div class="mb-4 infoBlock" style="justify-content: start">
+								<p class="title">experience</p>
+								<p style="font-size: 16px; font-weight: 400">
+									I gained most of my experience as a freelancer. It was postcards for a coffee shop,
+									illustrations for clothes, cups and plates. Also I worked with individual customers requests
+									and university projects.
+								</p>
+							</div>
+							<div class="infoBlock my-4">
+								<p class="title">education</p>
+								<p style="font-size: 16px; font-weight: 400">
+									Finishing Bachelor's Degree at Lviv Polytechnic National University - Institute of
+									Architecture and Design.<br />
+									Completed such online courses as: Sketchbook Techniques for Children's Illustration by Ema
+									Malyauka, Illustrating Fantastical Animals with Procreate by Julia Körner, Atmospheric Scenes
+									in Procreate: Paint with Color and Light by Ramona Wultschner, Character Creation from
+									Observational Drawings by Sarah van Dongen, Pictorial Sketchbook with Gouache by Maru Godas,
+									Introduction to Adobe Illustrator by Aarón Martínez,Daily Sketching for Creative Inspiration
+									by Sorie Kim, Exploratory Sketchbook: Find Your Drawing Style by Sarah van Dongen, Creative
+									Drawing Techniques for Beginners by Puño, Adobe Illustrator for Advanced Illustration by Aarón
+									Martínez.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div style="border-top: 1px solid #26211d; margin: 48px 0"></div>
+					<div class="grid-container">
+						<img class="grid-item" src="GandM.jpg" alt="monster" />
+						<img class="grid-item" src="GandM2.jpg" alt="monster" />
+						<img class="grid-item" src="GandM3.jpg" alt="monster" />
+						<img class="grid-item" src="GandM4.jpg" alt="monster" />
+					</div>
+					<div style="border-top: 1px solid #26211d; margin: 48px 0"></div>
+					<div class="grid-container">
+						<img class="grid-item" src="Selflove.jpg" alt="love" />
+						<img class="grid-item" src="Poem.jpg" alt="love" />
+						<img class="grid-item" src="Love.jpg" alt="love" />
+						<img class="grid-item" src="Bunny2.jpg" alt="love" />
+					</div>
+					<div style="border-top: 1px solid #26211d; margin: 48px 0"></div>
+					<div class="grid-container">
+						<img class="grid-item" src="RightToMagic2.jpg" alt="rightomagic" />
+						<img class="grid-item" src="RightToMagic.jpg" alt="rightomagic" />
+						<img class="grid-item" src="RightToMagic3.jpg" alt="rightomagic" />
+					</div>
+					<div style="border-top: 1px solid #26211d; margin: 48px 0"></div>
+					<div class="grid-container">
+						<img class="grid-item" src="Un.jpg" alt="artwork" />
+						<img class="grid-item" src="FeelingBr.png" alt="artwork" />
+						<img class="grid-item" src="Roks.jpg" alt="artwork" />
+						<img class="grid-item" src="Witch.jpg" alt="artwork" />
+						<img class="grid-item" src="Froggie.png" alt="artwork" />
+
+						<img class="grid-item" src="Dragon.jpg" alt="artwork" />
+						<img class="grid-item" src="Woodgirl.jpg" alt="artwork" />
+						<img class="grid-item" src="Summer.jpg" alt="artwork" />
+						<img class="grid-item" src="Trees .jpg" alt="artwork" />
+						<img class="grid-item" src="Ukrainiangirls.jpg" alt="artwork" />
+					</div>
+					<div style="border-top: 1px solid #26211d; margin: 48px 0"></div>
+					<div class="infoBlocksContainer" style="justify-content: flex-end">
+						<div class="infoBlock mx-4" style="max-width: 260px">
+							<p class="title">contact me</p>
+							<p style="font-size: 16px; font-weight: 400; display: flex; justify-content: space-between">
+								<span style="margin-right: 8px">email:</span><span>email@gmail.com</span>
+							</p>
+							<p style="font-size: 16px; font-weight: 400; display: flex; justify-content: space-between">
+								<span style="margin-right: 8px">phone:</span><span>+38 (067) 911 40 55</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div
+					class="headerBackground"
+					style="
+						margin: 20px 0 0 0;
+						color: white;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+					"
+				>
+					©2023 Marianna Chaban. All Rights Reserved
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
